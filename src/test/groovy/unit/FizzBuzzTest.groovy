@@ -1,7 +1,7 @@
 package test.groovy.unit
 
-import spock.lang.*
-import main.java.FizzBuzz
+import spock.lang.Specification
+import main.groovy.FizzBuzz
 
 class FizzBuzzTest extends Specification{
 
@@ -11,40 +11,40 @@ class FizzBuzzTest extends Specification{
         sut = new FizzBuzz()
     }
 
-    def "3の倍数かつ15の倍数でないときFizzを返す"() {
+    def "3の倍数かつ5の倍数でないときFizzを返す"() {
         expect:
-            sut.says(number) == 'Fizz'
+            sut.fizzBuzz(number) == 'Fizz'
         where:
-            number << [3, 6, 9, 12, 18, 21]
+            number << [3, 6, 12]
     }
 
-    def "5の倍数かつ15の倍数でないときBuzzを返す"() {
+    def "5の倍数かつ3の倍数でないときBuzzを返す"() {
         expect:
-            sut.says(number) == 'Buzz'
+            sut.fizzBuzz(number) == 'Buzz'
         where:
-            number << [5, 10, 20, 25, 35, 40]
+            number << [5, 10, 20]
     }
 
-    def "15の倍数のときFizzBuzzを返す"() {
+    def "3と5の倍数のときFizzBuzzを返す"() {
         expect:
-            sut.says(number) == 'FizzBuzz'
+            sut.fizzBuzz(number) == 'FizzBuzz'
         where:
-            number << [15, 30, 45, 60, 75, 90]
+            number << [15, 30, 45]
     }
     
     def "3の倍数でも5の倍数でもないときその数字を返す"() {
         expect:
-            sut.says(number) == number.toString()
+            sut.fizzBuzz(number) == number.toString()
         where:
-            number << [1, 2, 4, 7, 8, 11, 13]
+            number << [1, 2, 4]
     }
 
-    def "0以下の数字のときその数字を返す"(){
+    def "0以下の数字のときRuntimeExceptionを発生する"(){
         when:
-            sut.says(number)
+            sut.fizzBuzz(number)
         then:
             thrown(RuntimeException)
         where:
-            number << [0, -1, -2, -3, -4, -5, -6]
+            number << [0, -1, -2]
     }
 }
