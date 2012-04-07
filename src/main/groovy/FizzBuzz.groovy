@@ -1,6 +1,8 @@
 package main.groovy
 
-class FizzBuzz {
+import main.java.*
+
+class FizzBuzz implements features.FizzBuzz {
     String fizzBuzz(int number) {
         if(number < 1) throw new RuntimeException()
         else if (number%15 == 0) "FizzBuzz"
