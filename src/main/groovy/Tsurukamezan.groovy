@@ -12,6 +12,6 @@ class Tsurukamezan implements features.Tsurukamezan {
             }
         if (tsuruNum == null) throw new RuntimeException()
         def kameNum = x - tsuruNum
-        return "鶴" + tsuruNum.toString() + "羽、亀" + kameNum + "匹"
+        return "鶴${tsuruNum}羽、亀${kameNum}匹"
     }
 }
