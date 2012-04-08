@@ -1,2 +1,8 @@
 devst_awajiでのお題を勝手にGroovyでやってみたものです。
 インターフェース以外はGroovyとSpockになってます。
+
+devst_awaji(XP一日体験ワークショップ！)についてはこちら
+https://sites.google.com/site/xpjugwestt/gijiroku/20120331
+
+test.unit下のテストについてはカバレッジ測定のためにcoverturaを実行するようになっています。
+coverturaがない人はgradleディレクトリ内のcovertura.gradleを削除するか、build.gradleの最後の行をコメントアウトするなどしてください。
