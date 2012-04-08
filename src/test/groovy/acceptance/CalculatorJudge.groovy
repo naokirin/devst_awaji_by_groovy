@@ -16,36 +16,30 @@ public class CalculatorJudge extends Specification{
             sut.execute("1+2") == "3"
     }
 
-
     def "減算"() {
         expect:
             sut.execute("1-3") == "-2"
     }
-
 
     def "乗算"() {
         expect:
             sut.execute("3*2") == "6"
     }
 
-
     def "除算_割り切れる"() {
         expect:
             sut.execute("9/3") == "3"
     }
-
 
     def "除算_四捨五入切り捨て"() {
         expect:
             sut.execute("100/3") == "33.333"
     }
 
-
     def "除算_四捨五入切り上げ"() {
         expect:
             sut.execute("1/16") == "0.063"
     }
-
 
     def "左辺ゼロ"() {
         when:
@@ -54,14 +48,12 @@ public class CalculatorJudge extends Specification{
             thrown RuntimeException
     }
 
-
     def "右辺ゼロ"() {
         when:
             sut.execute("1-0")
         then:
             thrown RuntimeException
     }
-
 
     def "数式として成立しない_左辺のみ"() {
         when:
@@ -70,14 +62,12 @@ public class CalculatorJudge extends Specification{
             thrown RuntimeException
     }
 
-
     def "数式として成立しない_右辺のみ"() {
         when:
             sut.execute("*10")
         then:
             thrown RuntimeException
     }
-
 
     def "演算子二つ以上"() {
         when:

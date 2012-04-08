@@ -10,11 +10,7 @@ class CoinJudge {
         sut = new Coin()
     }
 
-    /**
-     * 引数が0の場合、RuntimeExceptionを投げる。
-     */
-
-    def testZeroAmount() {
+    def "引数が0の場合、RuntimeExceptionを投げる"() {
         when:
             sut.coinUsage(0)
         then:
@@ -22,11 +18,7 @@ class CoinJudge {
             e.class == RuntimeException
     }
 
-    /**
-     * 引数が負の数の場合、RuntimeExceptionを投げる。
-     */
-
-    def testNegativeAmount() {
+    def "引数が負の数の場合、RuntimeExceptionを投げる"() {
         when:
             sut.coinUsage(amount)
         then:
@@ -36,11 +28,7 @@ class CoinJudge {
             amount << [-1, Integer.MIN_VALUE]
     }
 
-    /**
-     * 500円玉のみで実現できる場合。
-     */
-
-    def test500YenCoinsCase() {
+    def "500円玉のみで実現できる場合"() {
         expect:
             sut.coinUsage(amount) == result
         where:
@@ -50,11 +38,7 @@ class CoinJudge {
             100000000 | "500円玉200000枚"
     }
 
-    /**
-     * 100円玉のみで実現できる場合。
-     */
-
-    def test100YenCoinsCase() {
+    def "100円玉のみで実現できる場合"() {
         expect:
             sut.coinUsage(amount) == result
         where:
@@ -65,20 +49,12 @@ class CoinJudge {
             400    | "100円玉4枚"
     }
 
-    /**
-     * 50円玉のみで実現できる場合。
-     */
-
-    def test50YenCoinsCase() {
+    def "50円玉のみで実現できる場合"() {
         expect:
             sut.coinUsage(50) == "50円玉"
     }
 
-    /**
-     * 10円玉のみで実現できる場合。
-     */
-
-    def test10YenCoinsCase() {
+    def "10円玉のみで実現できる場合"() {
         expect:
              sut.coinUsage(amount) == result
         where:
@@ -89,20 +65,12 @@ class CoinJudge {
             40     | "10円玉4枚"
     }
 
-    /**
-     * 5円玉のみで実現できる場合。
-     */
-
-    def test5YenCoinsCase() {
+    def "5円玉のみで実現できる場合"() {
         expect:
             sut.coinUsage(5) == "5円玉"
     }
 
-    /**
-     * 1円玉のみで実現できる場合。
-     */
-
-    def test1YenCoinsCase() {
+    def "1円玉のみで実現できる場合"() {
         expect:
             sut.coinUsage(amount) == result
         where:
@@ -113,11 +81,7 @@ class CoinJudge {
             4      | "1円玉4枚"
     }
 
-    /**
-     * 複数の種類のコインの組み合わせで実現できる場合。
-     */
-
-    def test500() {
+    def "複数の種類のコインの組み合わせで実現できる場合"() {
         expect:
             sut.coinUsage(amount) == result
         where:
@@ -153,11 +117,7 @@ class CoinJudge {
             193    | "100円玉と50円玉と10円玉4枚と1円玉3枚"
     }
 
-    /**
-     * 巨大な金額の場合。
-     */
-
-    def testLargeAmount() {
+    def "巨大な金額の場合"() {
         expect:
             sut.coinUsage(Integer.MAX_VALUE) == "500円玉4294967枚と100円玉と10円玉4枚と5円玉と1円玉2枚"
     }

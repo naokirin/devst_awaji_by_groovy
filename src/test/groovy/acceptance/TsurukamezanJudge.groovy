@@ -18,14 +18,12 @@ class TsurukamezanJudge extends Specification {
             actual == "鶴1羽、亀0匹"
     }
 
-
     def "亀一匹"() {
         when:
             def actual = sut.tsurukame(1, 4)
         then:
             actual == "鶴0羽、亀1匹"
     }
-
 
     def "鶴八羽と亀五匹"() {
         when:
@@ -34,7 +32,6 @@ class TsurukamezanJudge extends Specification {
             actual == "鶴8羽、亀5匹"
     }
 
-
     def "計算が成立しない"() {
         when:
             sut.tsurukame(1, 3)
@@ -42,14 +39,12 @@ class TsurukamezanJudge extends Specification {
             thrown RuntimeException
     }
 
-
     def "両方ゼロ"() {
         when:
             def actual = sut.tsurukame(0, 0)
         then:
             actual == "鶴0羽、亀0匹"
     }
-
 
     def "マイナスはダメ"() {
         when:

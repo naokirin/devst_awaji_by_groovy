@@ -11,40 +11,19 @@ class CalculatorTest extends Specification {
         sut = new Calculator()
     }
 
-    def "1+1を受け取って、2を返す"() {
-        expect:
-            sut.execute('1+1') == '2'
-    }
-
-    def "1*1を受け取って、1を返す"() {
-        expect:
-            sut.execute('1*1') == '1'
-    }
-
-    def "1-1を受け取って、0を返す"() {
-        expect:
-            sut.execute('1-1') == '0'
-    }
-
-    def "1/1を受け取って、1を返す"() {
-        expect:
-            sut.execute('1/1') == '1'
-    }
-
     def "式を受け取って、四則演算ができる"() {
         expect:
             sut.execute(formula) == expect
         where:
             formula | expect
+            '1+1'   | '2'
             '10+11' | '21'
+            '1*1'   | '1'
             '10*11' | '110'
+            '1-1'   | '0'
             '10-11' | '-1'
+            '1/1'   | '1'
             '20/10' | '2'
-    }
-
-    def "1/3を受け取って、0.333を返す"() {
-        expect:
-            sut.execute('1/3') == '0.333'
     }
 
     def "少数点以下が続くとき、第4位を四捨五入する"() {
@@ -52,13 +31,9 @@ class CalculatorTest extends Specification {
             sut.execute(formula) == expect
         where:
             formula | expect
+            '1/3'   | '0.333'
             '30/21' | '1.429'
             '8/7'   | '1.143'
-    }
-
-    def "9999/10000を受け取って、1を返す"() {
-        expect:
-            sut.execute('9999/10000') == '1'
     }
 
     def "小数点以下が続き第4位を四捨五入して小数点以下の最後に0があったとき、小数点以下の最後の0は表示しない"() {
@@ -66,6 +41,7 @@ class CalculatorTest extends Specification {
             sut.execute('8999/10000') == '0.9'
         where:
             formula       | expect
+            '9999/10000'  | '1'
             '8999/10000'  | '0.9'
             '10899/10000' | '1.09'
     }
