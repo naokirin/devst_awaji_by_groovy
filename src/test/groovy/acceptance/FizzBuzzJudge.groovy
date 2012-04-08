@@ -1,4 +1,4 @@
-package test.groovy.accept
+package test.groovy.acceptance
 
 import main.groovy.FizzBuzz
 import spock.lang.Specification

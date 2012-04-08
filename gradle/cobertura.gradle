@@ -17,7 +17,7 @@ coberturaInstrDir         = new File(coberturaTmpDir, coberturaInstrDirName)
 coberturaMetaDataFileName = "cobertura.ser"
 coberturaMetaDataFile     = new File(coberturaTmpDir, coberturaMetaDataFileName)
 
-test {
+groovyUnitTest {
 
     jvmArgs "-Dnet.sourceforge.cobertura.datafile=${coberturaMetaDataFile}"
 
@@ -54,7 +54,8 @@ test {
     }
 }
 
-unitTest {
+javaUnitTest {
+
     jvmArgs "-Dnet.sourceforge.cobertura.datafile=${coberturaMetaDataFile}"
 
     doFirst {

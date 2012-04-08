@@ -31,14 +31,39 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
-task unitTest(type: Test) {
+// Runs the tests
+task javaUnitTest(type: Test) {
+    description = 'Runs the unit tests under package test.java.unit.'
+    testClassesDir = new File('build/classes/test/test/java/unit')
+}
+
+task javaAcceptanceTest(type: Test) {
+    description = 'Runs the unit tests under package test.java.acceptance.'
+    testClassesDir = new File('build/classes/test/test/java/acceptance')
+}
+
+task groovyUnitTest(type: Test) {
     description = 'Runs the unit tests under package test.groovy.unit.'
-    setTestClassesDir new File('build/classes/test/test/groovy/unit')
+    testClassesDir = new File('build/classes/test/test/groovy/unit')
 }
 
-task acceptanceTest(type: Test) {
-    description = 'Runs the unit tests under package test.groovy.accept.'
-    setTestClassesDir new File('build/classes/test/test/groovy/accept')
+task groovyAcceptanceTest(type: Test) {
+    description = 'Runs the unit tests under package test.groovy.acceptance.'
+    testClassesDir = new File('build/classes/test/test/groovy/acceptance')
 }
 
+task unitTest {
+    description = 'Runs the unit tests.'
+    dependsOn = [javaUnitTest, groovyUnitTest]
+}
+
+task acceptanceTest {
+    description ='Runs the acceptance tests.'
+    dependsOn = [javaAcceptanceTest, groovyAcceptanceTest]
+}
+
+
+// Read *.gradle at gradle directory
 fileTree(dir: 'gradle', includes: ['*.gradle']).each { apply from: it }
+
+
