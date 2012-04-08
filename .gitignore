@@ -3,4 +3,4 @@ build/*
 .gradle/*
 *.iml
 out/*
-build.[0-9]*
+.DS_Store
